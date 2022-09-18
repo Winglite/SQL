@@ -37,4 +37,69 @@ CREATE TABLE LIVROS(
 
 /* INSERINDO OS DADOS */
 
-INSERT INTO LIVROS VALUES ('Cavaleiro Real','Ana Claudia','F',465,'Atlas',49.9,'RJ',2009);
+INSERT INTO LIVROS VALUES('Cavaleiro Real','Ana Claudia','F',465,'Atlas',49.9,'RJ',2009);
+INSERT INTO LIVROS VALUES('SQL para leigos','João Nunes','M',450,'Addison',98,'SP',2018);
+INSERT INTO LIVROS VALUES('Pessoas Efetivas','Eduardo Santos','M',390,'Beta',78.99,'RJ',2018);
+INSERT INTO LIVROS VALUES('Habitos Saudáveis','Eduardo Santos','M',630,'Beta',150.98,'RJ',2019);
+INSERT INTO LIVROS VALUES('A Casa Marrom','Hermes Macedo','M',250,'Bubba',60,'MG',2016);
+INSERT INTO LIVROS VALUES('Estacio Querido','Geraldo Francisco','M',310,'Insignia',100,'ES',2015);
+INSERT INTO LIVROS VALUES('Pra sempre amigas','Leda Silva','F',510,'Insignia',78.98,'ES',2011);
+INSERT INTO LIVROS VALUES('Copas Inesqueciveis','Marco Alcantara','M',200,'Larson',130.98,'RS',2018);
+INSERT INTO LIVROS VALUES('O poder da mente','Clara Mafra','F',120,'Continental',56.58,'SP',2017);
+
+
+/* 1 - Trazer todos os dados da tabela */
+SELECT * FROM LIVROS;
+
+
+/* 2 - TRAZER O NOME DO LIVRO E A EDITORA */
+SELECT LIVRO, EDITORA 
+FROM LIVROS;
+
+
+/* 3 - TRAZER O NOME DO LIVRO E UF PUBLICADO PUBLICADO POR SEXO M */
+SELECT LIVRO, UF
+FROM LIVROS
+WHERE SEXO = 'M';
+
+/* 4 - TRAZER O NOME DO LIVROS E PAGINAS PUBLICADO POR SEXO F */
+SELECT LIVRO, PAGINAS
+FROM LIVROS
+WHERE SEXO = 'F';
+
+/* 5 - TRAZER OS VALORES DOS LIVROS DA EDITORAS DE SÃO PAULO */
+SELECT LIVRO, VALOR
+FROM LIVROS
+WHERE UF = 'SP';
+
+/* TRAZER OS DADOS DOS AUTORES DO SEXO MASCULINO QUE TIVERAM LIVROS PUBLICADOS POR SP OU RJ */
+SELECT AUTOR, LIVRO
+FROM LIVROS
+WHERE SEXO = 'M'
+AND UF = 'SP' 
+OR UF = 'RJ';
+						 
+						 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
