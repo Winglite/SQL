@@ -1110,18 +1110,84 @@ insert into funcionarios values (1000,'Howard','showardrr@addtoany.com','Masculi
 
 SELECT COUNT(*) FROM FUNCIONARIOS;
 
+-- create table funcionarios
+      idFuncionario integer,
+      nome varchar(100),
+      email varchar(200),
+      sexo varchar(10),
+      departamento varchar(100),
+      admissao varchar(10),
+      salario integer,
+      cargo varchar(100),
+      idRegiao int
+
 --Traga os funcionarios que trabalhem
 --no departamento de filmes OU no
 --departamento de roupas
+
+-- 21:Filmes | 53: Roupas
+
+SELECT COUNT(*), departamento
+FROM FUNCIONARIOS
+GROUP BY departamento
+ORDER BY 1;
+
+-- Como estamos trabalhando com OR e a segunda condicao é opcional, colocamos na primeira condicao quem tem mais chances de uma saida verdadeira,
+-- pois a segunda condicao nao será checada nesse caso.
+
+SELECT idFuncionario as ID, nome, sexo, email, departamento
+FROM funcionarios
+WHERE departamento = 'Roupas' OR departamento = 'Filmes'
+ORDER BY departamento;
 
 --O gestor de marketing pediu a lista das funcionarias (AS) = FEMININO que trabalhem no departamento 
 --de filmes ou no departamento lar. Ele necessita enviar um email para as colaboradoras
 --desses dois setores.
 
+-- Feminino: 491
+SELECT COUNT(*), sexo
+FROM FUNCIONARIOS
+GROUP BY sexo
+ORDER BY 1;
+
+-- Lar: 52 | Filmes: 21
+SELECT COUNT(*), departamento
+FROM FUNCIONARIOS
+GROUP BY departamento
+ORDER BY 1;
+
+SELECT idFuncionario as ID, nome, sexo, email, departamento
+FROM funcionarios
+WHERE (departamento = 'Lar' AND sexo = 'Feminino')
+OR (departamento = 'Filmes' AND sexo = 'Feminino')
+ORDER BY departamento;
+
+SELECT idFuncionario as ID, nome, sexo, email, departamento
+FROM funcionarios
+WHERE (departamento = 'Filmes' OR departamento = 'Lar')
+AND (sexo = 'Feminino')
+ORDER BY departamento;
+
+
 --Traga os funcionarios do sexo masculino
 --ou os funcionarios que trabalhem no setor Jardim
 
+-- Feminino: 491
+SELECT COUNT(*), sexo
+FROM FUNCIONARIOS
+GROUP BY sexo
+ORDER BY 1;
 
+-- Lar: 52 | Filmes: 21
+SELECT COUNT(*), departamento
+FROM FUNCIONARIOS
+GROUP BY departamento
+ORDER BY 1;
+
+SELECT idFuncionario as ID, nome, sexo, email, departamento
+FROM funcionarios
+WHERE sexo = 'Masculino' OR departamento = 'Jardim'
+ORDER BY departamento;
 
 
 
