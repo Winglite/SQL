@@ -129,6 +129,11 @@ SEXO = 'M' AND (UF = 'SP' OR UF = 'RJ');
 SELECT COUNT(*) AS "Quantidade de Registros da Tab. Cliente"
  FROM CLIENTE;
 
+SELECT COUNT(*) AS QUANTIDADE, SEXO
+FROM CLIENTE
+GROUP BY SEXO;
+
+
 -- AGRUPA OS DADOS COM BASE EM UMA COLUNA --> GROUP BY
 SELECT SEXO, COUNT(*) 
 FROM CLIENTE
@@ -223,12 +228,134 @@ ON C.IDCLIENTE = T.ID_CLIENTE;
 
 
 
+--
+--
+--
+
+--ALTERAR O NOME E TIPO DA COLUNA COM CHANGE --> ALTER TABLE PRODUTO
+                                               CHANGE PRECO VALOR_UNITARIO INT NOT NULL;
+
+ANTES
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| IDPRODUTO    | int         | NO   | PRI | NULL    | auto_increment |
+| NOME_PRODUTO | varchar(30) | NO   |     | NULL    |                |
+| PRECO        | int         | YES  |     | NULL    |                |
+| FRETE        | float(10,2) | NO   |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+
+DEPOIS
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| IDPRODUTO      | int         | NO   | PRI | NULL    | auto_increment |
+| NOME_PRODUTO   | varchar(30) | NO   |     | NULL    |                |
+| VALOR_UNITARIO | int         | NO   |     | NULL    |                |
+| FRETE          | float(10,2) | NO   |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+
+
+-- ALTERAR O TIPO DA COLUNA --> ALTER TABLE PRODUTO
+                             CHANGE VALOR_UNITARIO VALOR_UNITARIO INT;
+ 
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| IDPRODUTO      | int         | NO   | PRI | NULL    | auto_increment |
+| NOME_PRODUTO   | varchar(30) | NO   |     | NULL    |                |
+| VALOR_UNITARIO | int         | YES  |     | NULL    |                |
+| FRETE          | float(10,2) | NO   |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+
+
+-- ALTERAR O TIPO DA COLUNA COM O MODIFY --> 
+
+ALTER TABLE PRODUTO
+MODIFY VALOR_UNITARIO VARCHAR(50) NOT NULL;
+
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| IDPRODUTO      | int         | NO   | PRI | NULL    | auto_increment |
+| NOME_PRODUTO   | varchar(30) | NO   |     | NULL    |                |
+| VALOR_UNITARIO | varchar(50) | NO   |     | NULL    |                |
+| FRETE          | float(10,2) | NO   |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+
+
+-- ADICIONAR UMA COLUNA --> 
+
+ALTER TABLE PRODUTO
+ADD PESO FLOAT(10,2) NOT NULL;
+
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| IDPRODUTO      | int         | NO   | PRI | NULL    | auto_increment |
+| NOME_PRODUTO   | varchar(30) | NO   |     | NULL    |                |
+| VALOR_UNITARIO | varchar(50) | NO   |     | NULL    |                |
+| FRETE          | float(10,2) | NO   |     | NULL    |                |
+| PESO           | float(10,2) | NO   |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+
+
+-- APAGANDO UMA COLUNA -->
+
+ALTER TABLE PRODUTO
+DROP COLUMN PESO;
+
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| IDPRODUTO      | int         | NO   | PRI | NULL    | auto_increment |
+| NOME_PRODUTO   | varchar(30) | NO   |     | NULL    |                |
+| VALOR_UNITARIO | varchar(50) | NO   |     | NULL    |                |
+| FRETE          | float(10,2) | NO   |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+
+
+-- ADICIONAR UMA COLUNA EM UMA ORDEM ESPECIFICA --> 
+
+ALTER TABLE PRODUTO
+ADD COLUMN PESO FLOAT(10,2) NOT NULL
+AFTER NOME_PRODUTO;
+
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| IDPRODUTO      | int         | NO   | PRI | NULL    | auto_increment |
+| NOME_PRODUTO   | varchar(30) | NO   |     | NULL    |                |
+| PESO           | float(10,2) | NO   |     | NULL    |                |
+| VALOR_UNITARIO | varchar(50) | NO   |     | NULL    |                |
+| FRETE          | float(10,2) | NO   |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+
+OU
+
+ALTER TABLE PRODUTO
+ADD COLUMN PESO FLOAT(10,2) NOT NULL
+FIRST;
+                                                    
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| PESO           | float(10,2) | NO   |     | NULL    |                |
+| IDPRODUTO      | int         | NO   | PRI | NULL    | auto_increment |
+| NOME_PRODUTO   | varchar(30) | NO   |     | NULL    |                |
+| VALOR_UNITARIO | varchar(50) | NO   |     | NULL    |                |
+| FRETE          | float(10,2) | NO   |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
 
 
 
+-- ATUALIZAR VARIAS LINHAS COM UPDATE (COMANDO DE DML) E CLAUSULA IN -->
 
+SELECT * FROM CLIENTE
+WHERE IDCLIENTE IN (12,13,18,19);
 
-
+UPDATE CLIENTE SET SEXO = 'F'
+WHERE IDCLIENTE IN (12,13,18,19);
 
 
 
