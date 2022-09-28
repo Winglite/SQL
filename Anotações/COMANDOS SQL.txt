@@ -705,8 +705,97 @@ ORDER BY 1;
 | KARLA   | F    | KARLA@GMAIL.COM   | COM  | 88687979 | COPACABANA | RIO DE JANEIRO | RJ     |
 +---------+------+-------------------+------+----------+------------+----------------+--------+
 
+--
+--
+-- DELIMITADOR --> E O QUE DEFINE QUE O CODIGO TERMINOU E O BANCO PODE EXECUTAR
+
+STATUS --> MOSTRA AS INFORMAÇÕES DO BANCO E QUAL DELIMITADOR ESTA USANDO
 
 
+C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe  Ver 8.0.30 for Win64 on x86_64 (MySQL Community Server - GPL)
+
+Connection id:          8
+Current database:       comercio
+Current user:           root@localhost
+SSL:                    Cipher in use is TLS_AES_256_GCM_SHA384
+Using delimiter:        ;
+Server version:         8.0.30 MySQL Community Server - GPL
+Protocol version:       10
+Connection:             localhost via TCP/IP
+Server characterset:    utf8mb4
+Db     characterset:    utf8mb4
+Client characterset:    utf8mb4
+Conn.  characterset:    utf8mb4
+TCP port:               3306
+Binary data as:         Hexadecimal
+Uptime:                 37 min 38 sec
+
+
+--MUDAR O DELIMITADOR --> QUANDO ABRE O PROGRAMA ELE VOLTA AO NORMAL
+
+DELIMITER $ (DELIMITER + 1 ESPAÇO E O SIMBOLO)
+
+
+--
+--
+-- PROCEDURES
+
+--> MUDE O DELIMITADOR
+DELIMITER $
+
+--CRIANDO A PROCEDURE
+CREATE PROCEDURE NOME()
+BEGIN
+
+	QUALQUER PROGRAMACAO;
+
+END
+$
+
+--CHAMANDO A PROCEDURE
+CALL NOME()$
+
+
+
+DELIMITER $
+
+CREATE PROCEDURE CONTA()
+BEGIN
+	SELECT 10 + 10 AS CONTA;
+END
+$
+
+
+--> SE NAO FOR MAIS PROGRAMAR PODE VOLTAR O DELIMITADOR PARA ; VAI FUNCIONAR TAMBEM
+
+CALL CONTA()$
+
++---------+
+| CONTA   |
++---------+
+| 20      |
++---------+
+
+
+-- ATRIBUIR PARAMETROS A PROCEDURE
+
+DELIMITER $
+
+CREATE PROCEDURE CONTA(NUMERO1 INT, NUMERO2 INT)
+BEGIN
+	SELECT NUMERO1 + NUMERO2 AS CONTA;
+END
+$
+
+DELIMITER ;
+
+CALL CONTA(100,50);
+
++-------+
+| CONTA |
++-------+
+|   150 |
++-------+
 
 
 
